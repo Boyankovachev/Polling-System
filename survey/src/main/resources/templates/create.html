@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href = "@{/css/create.css}" rel="stylesheet">
+    <script type="application/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+    <script type="application/javascript" th:src = "@{/js/create.js}"></script>
+</head>
+<body>
+
+    <p id="title">Create new survey!</p>
+
+    <div id="message"></div>
+
+    <div id="survey">
+
+        <p>Survey Name</p>
+        <input type="text" id="survey-name"><br>
+
+        <div id="questions">
+            <div id='question-1' class='question'></div>
+        </div>
+
+        <button id="add-question">Add question</button>
+    </div>
+
+    <button id="create">Create Survey</button>
+
+</body>
+</html>
+
+
+<template id="question-template">
+    <p>Question 1 text</p>
+    <input type="text" id="question-text-1">
+    <p>Is question mandatory?</p>
+    <select id="is-mandatory-1">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <p>Are multiple answers possible?</p>
+    <select id="multiple-answer-1">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+    </select>
+    <p>Select image (optional)</p>
+    <input type="file" id="image-1" name="image">
+    <div id="answer-1"></div>
+    <button class="add-answer" question-num="1">Add answer</button>
+</template>
+

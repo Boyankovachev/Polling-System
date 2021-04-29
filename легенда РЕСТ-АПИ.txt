@@ -1,0 +1,21 @@
+/                            GET  all            - връща изглед начална страница
+/register                    GET  all            - връща изглед страница за регистрация
+/register                    POST all            - създава профил
+/login                       GET  all            - връща изглед страница за логин
+/user                        GET  authenticated  - връща изглед на начална потребителска страница
+/create                      GET  authenticated  - връща изглед на страница за създаване на анкета
+/create                      POST authenticated  - създана анкета
+/uploadimage                 POST authenticated  - запазва снимка
+/survey/vote{surveyUrl}      GET  all            - връща изглед на анкета със съответния URL
+/postresults                 POST all            - брой гласове на анкетата 
+/survey/results{resultsUrl}  GET  all            - връща изглед с резулататите от анкетата
+/disablesurvey               POST all            - деактивира анкета
+/enablesurvey                POST all            - активира анкета
+
+
+
+пример за url анкета
+http://localhost:8080/survey/vote?surveyUrl=Jl75sdCduYddBnESZ9eHBVoBpsXCg5Jk
+
+
+http://localhost:8080/vote?voteUrl=7MtPZnNQ9px2puvRFZ4oxrqa3udTa0jX

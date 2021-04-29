@@ -1,0 +1,16 @@
+.question {
+  border-style: solid;
+}
+
+.answer {
+  border-style: dotted;
+}
+
+img {
+  height: 100px;
+  width: 150px;
+}
+
+#survey-container {
+    border-style: double;
+}

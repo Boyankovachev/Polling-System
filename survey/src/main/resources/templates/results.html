@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link th:href = "@{/css/survey.css}" rel="stylesheet">
+</head>
+<body>
+
+<div id="survey-container">
+    <p>Results from survey</p><br>
+    <p th:text="${survey.name}" id="survey" th:surveyUrl="${survey.surveyUrl}"></p>
+
+    <div th:each="question: ${survey.questions}" class="question" th:questionId="${question.questionId}" th:isMandatory="${question.isMandatory}">
+
+        <p th:text="${question.questionText}"></p>
+        <img th:unless="${question.imageName == 'empty'}" th:src="'/images/' + ${question.imageFileName}"/>
+
+        <div class="answer">
+            <ul>
+                <li th:each="answer: ${question.answers}">
+                    <p th:text="${answer.answerText}"></p>
+                    <p th:text="${'Votes: ' + answer.timesSelected}"></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

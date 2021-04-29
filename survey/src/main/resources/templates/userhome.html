@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Home</title>
+    <script type="application/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+    <script type="application/javascript" th:src = "@{/js/home.js}"></script>
+</head>
+<body>
+
+    <p th:text="${user.username}"></p>
+    <form action="/logout" method="get">
+        <button type="submit">Logout</button>
+    </form>
+    <form action="/create" method="get">
+        <button type="submit">Create a survey</button>
+    </form>
+
+    <div class="surveys">
+        <div th:each="survey: ${user.surveys}" th:id="${survey.surveyId}" class="survey-div">
+            <p th:text="${survey.name}"></p>
+            <form th:action="${'survey/vote'}" method="get">
+                <input type="hidden" name="surveyUrl" th:value="${survey.surveyUrl}">
+                <button type="submit">Vote</button>
+            </form>
+            <form th:action="${'survey/results'}" method="get">
+                <input type="hidden" name="resultsUrl" th:value="${survey.resultsUrl}">
+                <button type="submit">See results</button>
+            </form>
+            <button th:if="${survey.isOpen}" class="disable" th:surveyId="${survey.surveyId}">Disable Survey</button>
+            <button th:unless="${survey.isOpen}" class="enable" th:surveyId="${survey.surveyId}">Enable Survey</button>
+        </div>
+    </div>
+
+</body>
+</html>

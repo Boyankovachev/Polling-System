@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Survey</title>
+    <link th:href = "@{/css/survey.css}" rel="stylesheet">
+    <script type="application/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+    <script type="application/javascript" th:src = "@{/js/survey.js}"></script>
+</head>
+<body>
+
+    <div th:if="${survey.isOpen}" id="survey-container">
+        <p th:text="${survey.name}" id="survey" th:surveyUrl="${survey.surveyUrl}"></p>
+
+        <div th:each="question: ${survey.questions}" class="question" th:questionId="${question.questionId}" th:isMandatory="${question.isMandatory}">
+
+            <p th:text="${question.questionText}"></p>
+            <p th:if="${question.isMultipleAnswerAllowed}">Multiple answers are allowed!</p>
+            <p th:if="${question.isMandatory}">Answering question is mandatory!</p>
+            <img th:unless="${question.imageName == 'empty'}" th:src="'/images/' + ${question.imageFileName}"/>
+
+            <div class="answer">
+                <ul>
+                    <li th:each="answer: ${question.answers}">
+                        <input th:if="${question.isMultipleAnswerAllowed}" type="checkbox" th:name="${question.questionId}" th:value="${answer.answerId}" th:id="${answer.answerId}">
+                        <input th:unless="${question.isMultipleAnswerAllowed}" type="radio" th:name="${question.questionId}" th:value="${answer.answerId}" th:id="${answer.answerId}">
+                        <label th:for="${answer.answerId}" th:text="${answer.answerText}"></label><br>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <button th:if="${survey.isOpen}" id="submit">Submit answers!</button>
+    <p th:unless="${survey.isOpen}">Survey is closed!</p>
+
+</body>
+</html>
